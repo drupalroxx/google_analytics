@@ -11,5 +11,9 @@ public class welcomeController {
     public String welcome() {
         return "welcome to sadhanas google analytics";
     }
+    @RequestMapping(value = "/namaste", method = RequestMethod.GET)
+    public String namaste(){
+        return "namaste apka swagat hai sadhana ke google analytics me";
+    }
 
 }
