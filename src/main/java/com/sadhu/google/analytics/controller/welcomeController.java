@@ -15,5 +15,8 @@ public class welcomeController {
     public String namaste(){
         return "namaste apka swagat hai sadhana ke google analytics me";
     }
+    @RequestMapping(value = "/greetings", method = RequestMethod.GET)
+    public String greetings() { return "greetings from google analytics";}
+
 
 }
