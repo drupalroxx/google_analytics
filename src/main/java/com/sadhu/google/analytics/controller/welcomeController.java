@@ -1,5 +1,6 @@
 package com.sadhu.google.analytics.controller;
 
+import com.sadhu.google.analytics.models.Address;
 import com.sadhu.google.analytics.models.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,10 +25,39 @@ public class welcomeController {
     { return "hello "+name+" withe age "+age+" and the sex "+sex+" greetings from google analytics";}
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String welcomeUser(@RequestBody User user){
-        return "welcome "+user.getName()+" with the age "+user.getAge()+" and sex "+user.getSex();
+    public Address[] welcomeUser(@RequestBody User user){
+        Address[] addresses = user.getAddress();
+        Address addresses1 = addresses[0];
+
+        return user.getAddress();
+        //return "welcome "+user.getName()+" age "+user.getAge()+" sex "+user.getSex()+" and "+user.getAddress().getAddressLine1();
+
     }
 
+    @RequestMapping(value = "/userhobbies", method = RequestMethod.POST)
+    public String[] helloUser(@RequestBody User user){
+        return user.getHobbies();
+    }
+
+    @RequestMapping(value = "/userdetails", method = RequestMethod.GET)
+    public User getDetails(){
+        String [] hobbies = new String[]{"football","swimming"};
+      //  User user = new User(hobbies, "Hero hera lal", 22, "male");
+        User user = new User();
+        user.setHobbies(hobbies);
+        user.setName("hero hera lal");
+        user.setAge(32);
+        user.setSex("male");
+
+        return user;
+    }
+
+
+    @RequestMapping(value = "/address", method = RequestMethod.POST)
+    public String address(@RequestBody Address address){
+        return "My address is "+address.getAddressLine1()+" and street is "+address.getAddressLine2()+" " +
+                       "and city is "+address.getAddressLine3()+" and type is "+address.getType();
+    }
 
 
 }
