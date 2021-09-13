@@ -1,4 +1,7 @@
 package com.sadhu.google.analytics.service;
 
-public class CapsService {
+import com.sadhu.google.analytics.models.User;
+
+public interface CapsService {
+    public User captilise(User user);
 }

@@ -2,6 +2,8 @@ package com.sadhu.google.analytics.controller;
 
 import com.sadhu.google.analytics.models.Address;
 import com.sadhu.google.analytics.models.User;
+import com.sadhu.google.analytics.service.CapsService;
+import com.sadhu.google.analytics.service.impl.AllCapsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class welcomeController {
+public class WelcomeController {
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome(@RequestParam String name) {
@@ -57,6 +59,13 @@ public class welcomeController {
     public String address(@RequestBody Address address){
         return "My address is "+address.getAddressLine1()+" and street is "+address.getAddressLine2()+" " +
                        "and city is "+address.getAddressLine3()+" and type is "+address.getType();
+    }
+
+    @RequestMapping(value = "/allcaps", method = RequestMethod.POST)
+    public User captilise(@RequestBody User user){
+        CapsService cs = new AllCapsService();
+        User capuser = cs.captilise(user);
+        return capuser;
     }
 
 
