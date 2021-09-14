@@ -2,9 +2,10 @@ package com.sadhu.google.analytics.controller;
 
 import com.sadhu.google.analytics.models.Address;
 import com.sadhu.google.analytics.models.User;
-import com.sadhu.google.analytics.service.CapsService;
+import com.sadhu.google.analytics.service.SmallService;
 import com.sadhu.google.analytics.service.impl.AllCapsService;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.sadhu.google.analytics.service.CapsService;
+import com.sadhu.google.analytics.service.impl.AllSmallService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,11 +64,19 @@ public class WelcomeController {
 
     @RequestMapping(value = "/allcaps", method = RequestMethod.POST)
     public User captilise(@RequestBody User user){
+
         CapsService cs = new AllCapsService();
         User capuser = cs.captilise(user);
         return capuser;
     }
 
+    @RequestMapping(value = "/allsmall", method = RequestMethod.POST)
+    public User smalls(@RequestBody User user){
+        SmallService ss = new AllSmallService();
+        User smalluser = ss.smallSize(user);
+        return smalluser;
+
+    }
 
 }
 

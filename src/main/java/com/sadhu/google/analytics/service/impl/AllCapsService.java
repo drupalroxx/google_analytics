@@ -7,6 +7,7 @@ import com.sadhu.google.analytics.service.CapsService;
 import java.util.Locale;
 
 public class AllCapsService implements CapsService {
+
     @Override
     public User captilise(User user) {
 
@@ -32,14 +33,7 @@ public class AllCapsService implements CapsService {
 
 
         }
-
-
-
-
-
         return user;
     }
-
-
 
 }
