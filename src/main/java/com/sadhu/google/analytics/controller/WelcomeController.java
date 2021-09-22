@@ -6,6 +6,7 @@ import com.sadhu.google.analytics.service.SmallService;
 import com.sadhu.google.analytics.service.impl.AllCapsService;
 import com.sadhu.google.analytics.service.CapsService;
 import com.sadhu.google.analytics.service.impl.AllSmallService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WelcomeController {
+
+    @Autowired
+    private SmallService ss;
+
+    @Autowired
+    private CapsService cs;
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome(@RequestParam String name) {
@@ -66,7 +73,7 @@ public class WelcomeController {
     public User captilise(@RequestBody User user){
 
         CapsService cs = new AllCapsService();
-        User capuser = cs.captilise(user);
+        User capuser = cs.capitalize(user);
         return capuser;
     }
 
@@ -78,6 +85,17 @@ public class WelcomeController {
 
     }
 
+    @RequestMapping(value = "reverse", method = RequestMethod.POST)
+    public User reverseCase(@RequestBody User user, @RequestParam("spec") String spec){
+        if(spec.equals("lower")){
+            User smalluser = ss.smallSize(user);
+            return smalluser;
+        }
+        else{
+            User capuser = cs.capitalize(user);
+            return capuser;
+        }
+    }
 }
 
 
